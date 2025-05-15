@@ -17,16 +17,28 @@ app.get("/",(req,res)=>{
                 res.send("hello");
             })
  
+
+
 app.get("/rolldice",(req,res)=>{
     let dice=Math.floor(Math.random()*6)+1;
     res.render("rolldice.ejs",{num:dice});
 })
 
+
+
 app.get("/ig/:username",(req,res)=>{
     let{username}=req.params;
-    res.render("instagram",{username})
-    
+    const instaData=require("./data.json")
+    const data=instaData[username];
+    if(data){
+        res.render("instagram",{data})
+    }else{
+        res.render("error")
+    }
 })
+
+
+
 app.listen(port,()=>{
     console.log(`listening on port ${port}`);
     
