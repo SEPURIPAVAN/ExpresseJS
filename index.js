@@ -18,8 +18,8 @@ app.get("/",(req,res)=>{
             })
  
 app.get("/rolldice",(req,res)=>{
-        let dv=Math.floor(Math.random()*6)+1;
-    res.render("rolldice.ejs");
+    let dice=Math.floor(Math.random()*6)+1;
+    res.render("rolldice.ejs",{num:dice});
 })
 
 app.listen(port,()=>{
